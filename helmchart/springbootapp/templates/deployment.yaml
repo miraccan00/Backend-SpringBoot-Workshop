@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "springbootapp.name" . }}-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "springbootapp.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "springbootapp.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          envFrom:
+          - configMapRef:
+              name: {{ include "springbootapp.name" . }}-configmap
+          - secretRef:
+              name: {{ include "springbootapp.name" . }}-secret
+          resources:
+            requests:
+              memory: "512Mi" 
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
