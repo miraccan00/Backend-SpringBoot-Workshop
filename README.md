@@ -1,5 +1,5 @@
 # SpringBoot Workshop
-- SpringBoot gradle project workshop test
+- SpringBoot gradle project workshop
 
 # Read Me First
 The following was discovered as part of building this project:
