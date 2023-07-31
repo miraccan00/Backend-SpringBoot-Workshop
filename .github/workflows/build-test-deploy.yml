@@ -19,7 +19,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and tag Docker image
-        run: docker build -t miraccan/your-image-name:latest .
+        run: docker build -t miraccan/javaspringk8s:latest .
 
       - name: Push Docker image
-        run: docker push your-dockerhub-username/your-image-name:latest
+        run: docker push miraccan/javaspringk8s:latest
+
